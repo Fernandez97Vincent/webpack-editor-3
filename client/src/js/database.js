@@ -14,11 +14,11 @@ const initdb = async () =>
 
 // TODO: Add logic to a method that accepts some content and adds it to the database
 export const putDb = async (content) => {
-  console.log('Grabbing data from JATE')
+  console.log('Grabbing data from JATE');
   //connect
-  const jateData = await openDB('jate', 1);
+  const jateDb = await openDB('jate', 1);
 
-  const tx = jateData.transaction('jate', 'readwrite');
+  const tx = jateDb.transaction('jate', 'readwrite');
 
   const store = tx.objectStore('jate');
 
@@ -26,24 +26,25 @@ export const putDb = async (content) => {
 
   const result = await request;
 
-  console.log('Data has been saved to JATE', result.value);
-  console.error('putDb not implemented');
+  console.log(`- data has been saved to the database`, result.value);
 }
-
+;
 // TODO: Add logic for a method that gets all the content from the database
 export const getDb = async () => {
   console.log('Request to update JATE');
 
-  const jateData = await openDB('jate', 1);
+  const jateDb = await openDB('jate', 1);
 
-  const tx = jateData.transaction('jate', 'readwrite');
+  const tx = jateDb.transaction('jate', 'readwrite');
 
   const store = tx.objectStore('jate');
 
   const request = store.get(1);
 
   const result = await request;
-  console.log('Data has been saved to JATE', result.value);
+
+  result ? console.log(`- data has been retreived from the database`, result.value) :
+  console.log(`- data not found in the databse`);
   return result?.value
 }
 

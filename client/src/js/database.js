@@ -22,11 +22,11 @@ export const putDb = async (content) => {
 
   const store = tx.objectStore('jate');
 
-  const req = store.put({id: 1, value: content});
+  const request = store.put({id: 1, value: content});
 
-  const res = await req;
+  const res = await request;
 
-  console.log('Data has been saved to JATE', res.value);
+  console.log('Data has been saved to JATE', result.value);
   console.error('putDb not implemented');
 }
 
@@ -40,10 +40,10 @@ export const getDb = async (id, content) => {
 
   const store = tx.objectStore('jate');
 
-  const req = store.get(1);
+  const request = store.get(1);
 
-  const res = await req;
-  console.log('Data has been saved to JATE', res.value);
+  const result = await request;
+  console.log('Data has been saved to JATE', result.value);
   return result?.value
 }
 
